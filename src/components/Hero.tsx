@@ -39,7 +39,6 @@ const FluidSurface = () => {
 
   const color = useMemo(() => new THREE.Color(), []);
 
-  console.log('FLUID_RENDER');
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
     const pos = geometry.attributes.position;
@@ -80,12 +79,6 @@ const FluidSurface = () => {
       colors[ix + 2] = color.b;
     }
 
-    if (!(window as any).__zlogged) {
-      (window as any).__zlogged = true;
-      let mn = 9, mx = -9;
-      for (let i = 0; i < pos.count; i++) { const v = pos.array[i * 3 + 2]; if (v < mn) mn = v; if (v > mx) mx = v; }
-      console.log("ZRANGE", mn.toFixed(2), mx.toFixed(2), "active", active.current.toFixed(2));
-    }
     pos.needsUpdate = true;
     wirePos.needsUpdate = true;
     geometry.attributes.color.needsUpdate = true;
