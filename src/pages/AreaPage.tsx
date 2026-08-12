@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import SiteHeader from "@/components/SiteHeader";
@@ -22,6 +23,10 @@ const AreaPage = () => {
       return data;
     },
   });
+
+  useEffect(() => {
+    if (area) document.title = `${area.name} | Mayowa Soladoye`;
+  }, [area]);
 
   if (!area) {
     return (

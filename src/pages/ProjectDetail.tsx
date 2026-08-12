@@ -1,6 +1,8 @@
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import SiteHeader from "@/components/SiteHeader";
+import { getArea } from "@/data/areas";
 import { supabase } from "@/integrations/supabase/client";
 
 const ProjectDetail = () => {
@@ -20,6 +22,12 @@ const ProjectDetail = () => {
     },
   });
 
+  const area = getArea(project?.area ?? undefined);
+
+  useEffect(() => {
+    if (project) document.title = `${project.title} | Mayowa Soladoye`;
+  }, [project]);
+
   return (
     <div className="min-h-screen">
       <SiteHeader />
@@ -33,7 +41,12 @@ const ProjectDetail = () => {
           </>
         ) : (
           <article className="max-w-3xl">
-            <p className="text-sm uppercase tracking-[0.3em] text-accent">{project.category}</p>
+            {area && (
+              <Link to={`/work/${area.slug}`} className="text-sm text-muted-foreground hover:text-foreground">
+                ← {area.name}
+              </Link>
+            )}
+            <p className="mt-4 text-sm uppercase tracking-[0.3em] text-accent">{project.category}</p>
             <h1 className="mt-3 text-4xl">{project.title}</h1>
             <p className="mt-2 text-sm text-muted-foreground">
               {[project.year, project.location].filter(Boolean).join(" · ")}
