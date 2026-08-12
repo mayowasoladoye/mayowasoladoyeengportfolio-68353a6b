@@ -72,8 +72,8 @@ const FluidSurface = () => {
 
       // thermal band mapping: deep blue -> cyan -> green -> yellow -> red
       const raw = THREE.MathUtils.clamp((z + 0.9) / 3.0, 0, 1);
-      const norm = Math.pow(raw, 3);
-      color.setHSL(0.62 - norm * 0.62, 0.6, 0.1 + norm * 0.28);
+      const norm = Math.pow(raw, 2.2);
+      color.setHSL(0.62 - norm * 0.62, 0.65, 0.11 + norm * 0.3);
       colors[ix] = color.r;
       colors[ix + 1] = color.g;
       colors[ix + 2] = color.b;
