@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowRight } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import ProjectCard from "@/components/ProjectCard";
+import Hero from "@/components/Hero";
 import { areas } from "@/data/areas";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -24,12 +25,15 @@ const Index = () => {
     <div className="min-h-screen">
       <SiteHeader />
       <main>
-        <section className="container py-20 md:py-28">
+        <Hero />
+
+        <section className="container py-16 md:py-20">
           <p className="text-sm uppercase tracking-[0.3em] text-accent">Multidisciplinary portfolio</p>
-          <h1 className="mt-4 max-w-3xl text-4xl md:text-6xl leading-[1.05]">
+          <h2 className="mt-4 max-w-3xl text-3xl md:text-5xl leading-[1.05]">
             Engineering rigour, data craft and creative work in one place.
-          </h1>
+          </h2>
           <p className="mt-6 max-w-2xl text-muted-foreground">
+            3rd-year Chemical Engineering student at Covenant University, based in Abuja, Nigeria.
             I build process engineering tools, analytics and data platforms, and produce video, music and
             photography. Each discipline lives in its own sub-portfolio below.
           </p>
@@ -64,10 +68,54 @@ const Index = () => {
             </div>
           </section>
         )}
+
+        <section id="skills" className="container pb-24">
+          <h2 className="text-2xl mb-6">Skills</h2>
+          <ul className="flex flex-wrap gap-3 text-sm">
+            {[
+              "AutoCAD",
+              "Fusion 360",
+              "Python",
+              "MATLAB",
+              "Simulink",
+              "Microsoft Excel",
+              "Microsoft Word",
+              "ASPEN HYSYS",
+            ].map((skill) => (
+              <li
+                key={skill}
+                className="rounded-full border border-border bg-card px-4 py-2 text-muted-foreground"
+              >
+                {skill}
+              </li>
+            ))}
+          </ul>
+        </section>
       </main>
       <footer className="border-t border-border/60 py-8">
-        <div className="container text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Mayowa Soladoye
+        <div className="container flex flex-wrap items-center justify-between gap-4 text-sm text-muted-foreground">
+          <span>© {new Date().getFullYear()} Mayowa Soladoye</span>
+          <div className="flex flex-wrap gap-5">
+            <a className="hover:text-foreground" href="mailto:mayowasoladoye720@gmail.com">
+              Email
+            </a>
+            <a
+              className="hover:text-foreground"
+              href="https://www.linkedin.com/in/mayowa-soladoye-1536682a7"
+              target="_blank"
+              rel="noreferrer"
+            >
+              LinkedIn
+            </a>
+            <a
+              className="hover:text-foreground"
+              href="https://github.com/mayowasoladoye"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
+          </div>
         </div>
       </footer>
     </div>
